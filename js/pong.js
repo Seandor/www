@@ -1,6 +1,6 @@
 //global variables
 var ctx;
-var WIDTH = 800;
+var WIDTH = 1080;
 var HEIGHT = 600;
 var ball_pos = new Array(2);
 var ball_vel = new Array(2);
@@ -15,18 +15,11 @@ function game_init() {
 	ball_vel[0] = 4;
 	ball_vel[1] = 2;
 	// draw_ball(ball_pos,ball_rad,ball_img);
-	setInterval(move_ball,50);
+	setInterval(draw_ball,30);
 
 }
 
-function draw_ball(ball_pos,ball_rad,img) {
-	ctx.beginPath();
-	ctx.arc(ball_pos[0],ball_pos[1],ball_rad,0,2*Math.PI);
-	// ctx.drawImage(img,ball_pos[0]-ball_rad,ball_pos[1]-ball_rad,2*ball_rad,2*ball_rad);
-	ctx.stroke();
-}
-
-function move_ball() {
+function draw_ball() {
 	ctx.clearRect(ball_pos[0]-ball_rad,ball_pos[1]-ball_rad,2*ball_rad,2*ball_rad);
 
 	if (ball_pos[0] <= ball_rad || (WIDTH-ball_pos[0]) <= ball_rad) {
@@ -37,5 +30,5 @@ function move_ball() {
 	}
 	ball_pos[0] += ball_vel[0];
 	ball_pos[1] += ball_vel[1];
-	draw_ball(ball_pos,ball_rad,ball_img);
+	ctx.drawImage(ball_img,ball_pos[0]-ball_rad,ball_pos[1]-ball_rad,2*ball_rad,2*ball_rad);
 }
