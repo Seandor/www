@@ -1,8 +1,8 @@
-var WINDOW_WIDTH = 1024;
-var WINDOW_HEIGHT = 600;
-var RADIUS = 8;
-var MARGIN_TOP = 30;
-var MARGIN_LEFT = 60;
+var WINDOW_WIDTH = document.body.clientWidth;
+var WINDOW_HEIGHT = document.body.clientHeight;
+RADIUS = Math.round(WINDOW_WIDTH*4/5 / 108) - 1;
+var MARGIN_LEFT = Math.round(WINDOW_WIDTH/10);
+var MARGIN_TOP = Math.round(WINDOW_HEIGHT/5);
 var NUM_WIDTH = digit[0][0].length * 2 * RADIUS;
 var COLON_WIDTH = digit[10][0].length * 2 * RADIUS;
 var PADDING = 2 * (RADIUS+1);
@@ -12,8 +12,7 @@ var cur_time = new Date();
 var balls = [];
 const colors = ["#FFFF00", "#FF99CC", "#00CC66", "#3333FF", "#FF6666", "#FF9900", "#999999", "#669933", "#33FF00", "#33FFFF"];
 
-window.onload = function() {
-	
+window.onload = function() {	
 	var canvas = document.getElementById('canvas');
 	var context = canvas.getContext('2d');
 	
@@ -88,14 +87,14 @@ function updateBalls() {
 			balls[i].y = WINDOW_HEIGHT - RADIUS;
 			balls[i].vy = -balls[i].vy * 0.6;
 		}
-		if (balls[i].x < 0) {
-			// balls.splice(i,1); 
-			balls[i].vx = -balls[i].vx
-		}
-		if (balls[i].x > (WINDOW_WIDTH - RADIUS)) {
-			balls[i].x = WINDOW_WIDTH - RADIUS;
-			balls[i].vx = -balls[i].vx;
-		}
+		// if (balls[i].x < 0) {
+		// 	// balls.splice(i,1); 
+		// 	balls[i].vx = -balls[i].vx
+		// }
+		// if (balls[i].x > (WINDOW_WIDTH - RADIUS)) {
+		// 	balls[i].x = WINDOW_WIDTH - RADIUS;
+		// 	balls[i].vx = -balls[i].vx;
+		// }
 	}
 
 	var count = 0;
