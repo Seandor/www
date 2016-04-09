@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Event Stream</title>
+	<script src="js/event.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="box">
+		<input type="button" value="按钮" id="btn" onclick="showMessage()"></input>
+		<input type="button" value="按钮1" id="btn1"></input>
+		<input type="button" value="按钮2" id="btn2"></input>
+		<input type="button" value="按钮3" id="btn3"></input>
+	</div>
+	<script type="text/javascript">
+		function showMessage(event) {
+			alert(eventUtil.getElement(event));
+			eventUtil.stopPropagation(event);
+		}
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById('btn2');
+		var btn3 = document.getElementById('btn3');
+
+		btn1.onclick = function() {
+			alert('这是通过DOM 0级事件处理程序添加的事件！');
+		};
+		btn1.onclick = null;
+		//DOM 2级事件处理程序
+		btn2.addEventListener('click', showMessage, false);
+		btn2.addEventListener('click', function() {
+			alert(this.value);
+		}, false);
+		// btn2.removeEventListener('click', showMessage, false);		
+		eventUtil.addHandler(btn3,'click',showMessage);
+	</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>opacity</title>
+	<style type="text/css">
+		body, div {
+			margin: 0;
+			padding: 0;
+		}
+		#div1 {
+			width: 300px;
+			height: 300px;
+			margin: 200px auto;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			oDiv = document.getElementById('div1');
+			oDiv.onmousemove = function() {
+				opacityChange(80);
+			};
+			oDiv.onmouseout = function() {
+				opacityChange(100);
+			};
+		};
+
+		var timer = null;
+		var curOpacity = 100;
+		function opacityChange(target) {
+			clearInterval(timer);
+			oDiv = document.getElementById('div1');
+			var speed = target < 100 ? -10 : 10;
+			timer = setInterval(function() {
+				if (curOpacity == target) {
+					clearInterval(timer);
+				} else {
+					curOpacity += speed;
+					oDiv.style.opacity = curOpacity/100;
+				}
+			}, 30);
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"><img src="image.png"></div>
+</body>
+</html>

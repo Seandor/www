@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>concurrent opacity demo</title>
+	<style type="text/css">
+		body, div {
+			margin: 0;
+			padding: 0;
+		}
+		#father {
+			margin: 20px auto;
+			width: 900px;
+			overflow: hidden;
+		}
+		#father div {
+			width: 200px;
+			height: 200px;
+			background: blue;
+			float: left;
+			margin-left: 20px;
+			opacity: 0.5;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			oDiv = document.getElementsByTagName('div');
+			for (var i=1; i < oDiv.length; i++) {
+				oDiv[i].opacity = 50;
+				oDiv[i].timer = null;
+				oDiv[i].onmouseover = function() {
+					startMove(this, 100);
+				};
+				oDiv[i].onmouseout = function() {
+					startMove(this, 50);
+				};
+			}
+
+		};
+		function startMove(item, target) {
+			clearInterval(item.timer);
+			item.timer = setInterval(function() {
+				var speed = (target - item.opacity) / 10;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+				if (item.opacity == target) {
+					clearInterval(item.timer);
+				} else {
+					item.opacity += speed;
+					item.style.opacity = item.opacity/100;
+				}
+			}, 30);
+		}
+	</script>>
+</head>
+<body>
+	<div id="father">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>

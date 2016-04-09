@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>taobao animation demo</title>
+	<style type="text/css">
+		body, ul, p{
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			text-decoration: none;
+		}
+		ul {
+			list-style: none;
+		}
+		#wrap {
+			margin: 20px auto;
+			width: 296px;
+		}
+		#move li {
+			width: 72px;
+			height: 67px;
+			border: 1px solid #EAEAEA;
+			font-size: 12px;
+			float: left;
+			border-bottom: none;
+		}
+		#move li a {
+			text-align: center;
+			display: block;
+			color: #666;
+		}
+		#move li a:hover {
+			color: #F40;
+		}
+		#move li img {
+			width: 24px;
+			height: 24px;
+			position: relative;
+			top: 11px;
+			opacity: 1;
+		}
+		#move li p {
+			position: relative;
+			top: 11px;
+		}
+	</style>
+	<script type="text/javascript" src="js/move.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var oMove = document.getElementById('move');
+			var aList = oMove.getElementsByTagName('li');
+			for (var i = 0; i < aList.length; i++) {
+				aList[i].onmouseover = function() {
+					var _this = this.getElementsByTagName('img')[0];
+					startMove(_this, {'top': 0, 'opacity': 0}, function() {
+						_this.style.top = '20px';
+						startMove(_this, {'top': 11, 'opacity':100});
+					});
+				};
+			}
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="move">
+			<li><a href="#"><img src="images/huafei.png"><p>充话费</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/game.png"><p>游戏</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/travel.png"><p>旅行</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/secure.png"><p>保险</p></a></li>
+			<li><a href="#"><img src="images/lottery.png"><p>彩票</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/movie.png"><p>电影</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/takeaway.png"><p>外卖</p></a></li>
+			<li style="border-left: none;"><a href="#"><img src="images/finance.png"><p>理财</p></a></li>
+			<li style="border-bottom: 1px solid #EAEAEA;"><a href="#"><img src="images/service.png"><p>找服务</p></a></li>
+			<li style="border-left: none; border-bottom: 1px solid #EAEAEA;"><a href="#"><img src="images/music.png"><p>音乐</p></a></li>
+			<li style="border-left: none; border-bottom: 1px solid #EAEAEA;"><a href="#"><img src="images/水电.png"><p>水电煤</p></a></li>
+			<li style="border-left: none; border-bottom: 1px solid #EAEAEA;"><a href="#"><img src="images/ticket.png"><p>火车票</p></a></li>
+		</ul>
+	</div>
+</body>
+</html>
