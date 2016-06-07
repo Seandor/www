@@ -23,11 +23,10 @@ window.onload = function() {
 		function() {
 			render(context);
 			update();
-		}
-		,
+		},
 		50
 	);
-}
+};
 
 function update() {
 	next_time = new Date();
